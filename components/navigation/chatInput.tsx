@@ -1,48 +1,28 @@
-import { StyleSheet, View, TextInput, Text } from 'react-native'
+import { StyleSheet, View, TextInput } from 'react-native'
 import { Button } from '@rneui/themed';
-import { useState, useEffect } from 'react'
-import {OPEN_AI_KEY, API_URL} from "@env"
+import { useState } from 'react'
 
-type ChatMessage = {
-    role: string,
-    content: string
+
+type ChatInputProps = {
+    onSubmit: Function,
+
 }
 
-const ChatInput = () => {
-    const [text, setText] = useState<ChatMessage>({role: 'user', content: ''})
-    const [chat, setChat] =useState<Array<ChatMessage>>([])
+const ChatInput = ({ onSubmit }: ChatInputProps) => {
+    const [text, setText] = useState<string>('')
 
-    useEffect(() => {
-        function updateChat() {
-
-        }
-    },[chat.length])
-    
-    const onSubmit = async () => {
-        const response = await fetch(API_URL, {
-            headers: {
-                'Authorization': `Bearer ${OPEN_AI_KEY}`,
-                'Content-Type': 'application/json'
-            },
-            method: 'POST',
-            body: JSON.stringify({
-                model: 'gpt-3.5-turbo',
-                messages: chat,
-            }),
-        })
-        const rawResponse = await response.json()
-        const {message, finish_reason} = rawResponse[0]
-        setChat([...chat, message])
+    const handleOnSubmit = () => {
+        onSubmit(text)
+        setText('')
     }
-    
+
 
     return (
-        <View style={styles.container}>
-            <Text>a</Text>
+        <View style={styles.inputContainer}>
             <TextInput
                 style={styles.input}
-                onChangeText={(e) => setText({role: 'user', content: e})}
-                value={text.content}
+                onChangeText={(e) => setText(e)}
+                value={text}
                 placeholder="Enter your question"
                 keyboardType="default"
                 multiline
@@ -51,9 +31,8 @@ const ChatInput = () => {
                 title="Go"
                 titleStyle={styles.btnTitle}
                 buttonStyle={styles.btn}
-                onPress={onSubmit}
+                onPress={handleOnSubmit}
             />
-
         </View>
     )
 }
@@ -61,21 +40,23 @@ const ChatInput = () => {
 export default ChatInput
 
 const styles = StyleSheet.create({
-    container: {
+
+    inputContainer: {
         width: '100%',
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
-        
+        marginBottom: 20,
+
     },
     input: {
         height: 40,
-        width: '70%',        
+        width: '70%',
         borderWidth: 1,
         borderRadius: 50,
         padding: 10,
     },
-    btn: {        
+    btn: {
         width: 70,
         borderRadius: 20,
     },
