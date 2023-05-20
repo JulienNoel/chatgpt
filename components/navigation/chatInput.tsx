@@ -1,17 +1,17 @@
-import { StyleSheet, View, TextInput } from 'react-native'
+import { StyleSheet, View, TextInput, StyleProp } from 'react-native'
 import { Button } from '@rneui/themed';
 import { useState } from 'react'
 
 
 type ChatInputProps = {
-    onSubmit: Function,
+    onSubmit: (text: string) => void,
 
 }
 
 const ChatInput = ({ onSubmit }: ChatInputProps) => {
     const [text, setText] = useState<string>('')
 
-    const handleOnSubmit = () => {
+    const handleOnSubmit = (): void => {
         onSubmit(text)
         setText('')
     }
@@ -39,7 +39,7 @@ const ChatInput = ({ onSubmit }: ChatInputProps) => {
 
 export default ChatInput
 
-const styles = StyleSheet.create({
+const styles= StyleSheet.create({
 
     inputContainer: {
         width: '100%',
