@@ -1,7 +1,5 @@
-import {
-    StyleSheet, Text, View, Animated,
-    Easing
-} from 'react-native'
+import {StyleSheet, Text, Animated,
+    Easing} from 'react-native'
 import { useEffect, useRef } from 'react'
 import type { EasingFunction } from 'react-native';
 

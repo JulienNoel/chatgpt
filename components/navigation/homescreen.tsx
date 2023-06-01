@@ -5,7 +5,7 @@ import { OPEN_AI_KEY, API_URL } from "@env"
 import ChatMessage from './chatMessage';
 import ChatInput from './chatInput';
 import Waiting from './waiting';
-
+import { ResetButton } from '../resetButton';
 
 type ChatMessage = {
   role: string,
@@ -62,12 +62,19 @@ function HomeScreen({ navigation }) {
     Keyboard.dismiss()
   }
 
+  const onReset = (): void => {
+    setChat([])
+  }
+
   return (
     <View style={styles.container}>
+      <ResetButton onReset={onReset} />
       <FlatList
         ref={scrollRef}
         data={chat}
-        renderItem={({ item }) => <ChatMessage message={item.content.trim()} role={item.role} />}
+        renderItem={({ item }) => 
+        <ChatMessage message={item.content.trim()} role={item.role} />
+      }
         keyExtractor={item => item.content}
         showsVerticalScrollIndicator={false}
         ListFooterComponent={<Waiting isLoading={isLoading} />}
