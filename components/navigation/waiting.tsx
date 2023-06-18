@@ -1,12 +1,14 @@
-import { StyleSheet, Text, View, ActivityIndicator } from 'react-native'
+import { StyleSheet, View, ActivityIndicator } from 'react-native'
 import React from 'react'
 
 type WaitingProps = {
-  isLoading: Boolean
+  isLoading: boolean
 }
 
-export default function Waiting({ isLoading }: WaitingProps) {
-  return !isLoading || (
+export default function Waiting({ isLoading }: WaitingProps)
+: JSX.Element | null {
+  if (!isLoading) return null
+  return (
 
     <View style={styles.container}>
       <ActivityIndicator color='orange' />
@@ -25,8 +27,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 20,
     padding: 15,
-    backgroundColor: 'slategrey',
-    borderColor: 'slategrey'
+    backgroundColor: '#3FA93B',
+    borderColor: '#3FA93B'
   }
 
 })
