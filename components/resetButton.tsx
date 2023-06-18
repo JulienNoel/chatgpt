@@ -24,7 +24,8 @@ const styles = StyleSheet.create({
         width: 70,
         borderRadius: 20,        
         alignSelf: 'flex-end',
-        marginRight: 10
+        marginRight: 10,
+        marginBottom: 10
         },
     btnTitle: {
         fontWeight: '700',

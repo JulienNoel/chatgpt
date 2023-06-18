@@ -9,10 +9,11 @@ type ChatInputProps = {
 
 }
 
-const ChatInput = ({ onSubmit }: ChatInputProps) => {
+const ChatInput = ({ onSubmit }: ChatInputProps): JSX.Element => {
     const [text, setText] = useState<string>('')
 
     const handleOnSubmit = (): void => {
+        if (text === '') return
         onSubmit(text)
         setText('')
     }
