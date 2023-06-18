@@ -2,6 +2,8 @@ import {StyleSheet, Text, Animated,
     Easing} from 'react-native'
 import { useEffect, useRef } from 'react'
 import type { EasingFunction } from 'react-native';
+import { useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
+import { shadowStyles } from '../../styles/shadow';
 
 type ChatMessageProps = {
     message: string,
@@ -12,6 +14,13 @@ type ChatMessageProps = {
 const ChatMessage = ({ message, role }: ChatMessageProps) => {
 
     const opacity = useRef(new Animated.Value(0)).current;
+    const sharedVal = useSharedValue(0);
+
+    const animatedStyles2 = useAnimatedStyle(() => {
+        return {
+          transform: [{ translateX: sharedVal.value }],
+        };
+      });
 
     const animate = (easing: EasingFunction) => {
         opacity.setValue(0);

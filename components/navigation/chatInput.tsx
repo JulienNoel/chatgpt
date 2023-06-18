@@ -1,5 +1,5 @@
 import { StyleSheet, 
-    View, TextInput, StyleProp } from 'react-native'
+    View, TextInput } from 'react-native'
 import { Button } from '@rneui/themed';
 import { useState } from 'react'
 
@@ -32,7 +32,7 @@ const ChatInput = ({ onSubmit }: ChatInputProps) => {
                 title="Go"
                 titleStyle={styles.btnTitle}
                 buttonStyle={styles.btn}
-                onPress={handleOnSubmit}
+                onPress={handleOnSubmit}                
             />
         </View>
     )
@@ -59,7 +59,7 @@ const styles= StyleSheet.create({
     },
     btn: {
         width: 70,
-        borderRadius: 20,
+        borderRadius: 20,        
     },
     btnTitle: {
         fontWeight: '700'

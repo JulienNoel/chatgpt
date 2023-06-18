@@ -13,16 +13,20 @@ export const ResetButton = ({onReset}: ResetBtnProps) => {
             title="Reset"
             titleStyle={styles.btnTitle}
             buttonStyle={styles.btn}
-            onPress={onReset} />
+            onPress={onReset}
+            color='warning'
+             />
     )
 }
 
 const styles = StyleSheet.create({
     btn: {
         width: 70,
-        borderRadius: 20,
-    },
+        borderRadius: 20,        
+        alignSelf: 'flex-end',
+        marginRight: 10
+        },
     btnTitle: {
-        fontWeight: '700'
-    }
+        fontWeight: '700',
+    },
 })

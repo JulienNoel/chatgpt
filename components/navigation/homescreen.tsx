@@ -12,7 +12,7 @@ type ChatMessage = {
   content: string
 }
 
-function HomeScreen({ navigation }) {
+function HomeScreen({ navigation }): JSX.Element {
 
   const [chat, setChat] = useState<Array<ChatMessage>>([])
   const [isSubmit, setIsSubmit] = useState<string>('')
