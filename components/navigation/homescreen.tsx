@@ -7,7 +7,7 @@ import ChatInput from './chatInput';
 import Waiting from './waiting';
 import { ResetButton } from '../resetButton';
 
-type ChatMessage = {
+export type ChatMessage = {
   role: string,
   content: string
 }

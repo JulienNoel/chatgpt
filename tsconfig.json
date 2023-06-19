@@ -9,6 +9,7 @@
     "types": ["react-native"],
     "allowJs": true,    
     "esModuleInterop": true,
+    "moduleResolution": "NodeNext"
   },
   "exclude": [
     "node_modules",
