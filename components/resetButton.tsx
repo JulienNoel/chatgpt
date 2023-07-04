@@ -10,7 +10,7 @@ export const ResetButton = ({onReset}: ResetBtnProps) => {
 
     return (
         <Button
-            title="Reset"
+            title="New Chat"
             titleStyle={styles.btnTitle}
             buttonStyle={styles.btn}
             onPress={onReset}
@@ -20,9 +20,9 @@ export const ResetButton = ({onReset}: ResetBtnProps) => {
 }
 
 const styles = StyleSheet.create({
-    btn: {
-        width: 70,
-        borderRadius: 20,        
+    btn: {        
+        borderRadius: 20,
+        paddingHorizontal: 20,        
         alignSelf: 'flex-end',
         marginRight: 10,
         marginBottom: 10
