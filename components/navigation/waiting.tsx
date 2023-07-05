@@ -7,16 +7,14 @@ type WaitingProps = {
 
 export default function Waiting({ isLoading }: WaitingProps)
 : JSX.Element | null {
-  if (!isLoading) return null
-  return (
 
+  if (!isLoading) return null  
+
+  return (      
     <View style={styles.container}>
       <ActivityIndicator color='orange' />
     </View>
     )
-
-
-
 }
 
 const styles = StyleSheet.create({

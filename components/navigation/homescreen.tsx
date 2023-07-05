@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View, FlatList, Keyboard } from 'react-native'
+import { StyleSheet, View, FlatList, Keyboard, KeyboardAvoidingView, Platform } from 'react-native'
 import { useState, useEffect, useRef } from 'react'
 import { OPEN_AI_KEY, API_URL } from "@env"
 import ChatMessage from './chatMessage';
@@ -7,7 +7,7 @@ import ChatInput from './chatInput';
 import Waiting from './waiting';
 import { ResetButton } from '../resetButton';
 
-type ChatMessage = {
+export type ChatMessage = {
   role: string,
   content: string
 }
@@ -41,16 +41,18 @@ function HomeScreen({ navigation }): JSX.Element {
   
         const { message, finish_reason } = rawResponse.choices[0]      
         setChat(prevChat => [...prevChat, message])
-        setIsLoading(false)
+        
       }catch (error){
         console.error(error)
+      }finally{
+        setIsLoading(false)
       }
       
     }
     if (chat.length > 0) {
       updateChat()
     }
-
+  
   }, [isSubmit])
 
 
@@ -58,7 +60,7 @@ function HomeScreen({ navigation }): JSX.Element {
     const message: ChatMessage = { role: 'user', content: text.trim() }
     setChat(prevChat => [...prevChat, message])
     setIsSubmit(text)
-    setIsLoading(true)
+    setTimeout(() => setIsLoading(true), 500)
     Keyboard.dismiss()
   }
 
@@ -67,8 +69,10 @@ function HomeScreen({ navigation }): JSX.Element {
   }
 
   return (
-    <View style={styles.container}>
-      <ResetButton onReset={onReset} />
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+       style={styles.container}>
+      <ResetButton onReset={onReset} />      
       <FlatList
         ref={scrollRef}
         data={chat}
@@ -86,7 +90,8 @@ function HomeScreen({ navigation }): JSX.Element {
 
       />
       <ChatInput onSubmit={onSubmit} />
-    </View>
+    </KeyboardAvoidingView>
+    
   );
 }
 
