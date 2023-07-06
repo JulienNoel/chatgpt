@@ -13,9 +13,20 @@
       "ignorePattern": "^import\\s.+\\sfrom\\s.+;$", // Ignore import statements
       "ignoreComments": true, // Ignore lines with comments
     }],
-    "object-property-newline": ["warn", { 
-      "allowAllPropertiesOnSameLine": true 
-    }]
+    "object-property-newline": ["warn", {
+      "ObjectExpression": {
+        "multiline": true,
+        "minProperties": 1,
+        "consistent": true
+      },
+      "ObjectPattern": {
+        "multiline": true,
+        "minProperties": 1
+      },
+      "ImportDeclaration": "always",
+      "ExportDeclaration": "always"
+    }
+]
   },
   "ignorePatterns": [
     "storybook/",
