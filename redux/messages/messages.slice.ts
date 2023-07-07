@@ -14,8 +14,7 @@ export const messageSlice = createSlice({
   initialState,
   reducers: {
     createPost(state: TMessageState, action: PayloadAction<Record<string, TMessages>>) {
-      ...state,
-      ...action.payload
+     
     },
     updatePost(state: TMessageState, action: PayloadAction<TMessages>) {
 
