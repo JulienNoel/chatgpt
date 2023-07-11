@@ -1,7 +1,7 @@
 import React from 'react';
 import { SafeAreaView, StatusBar, Text, useColorScheme } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
-import { store } from './store/store';
+import { store } from './redux/store/store';
 import { Provider } from 'react-redux';
 import { Router } from './router';
 

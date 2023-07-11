@@ -6,20 +6,23 @@ import ChatMessage from './chatMessage';
 import ChatInput from './chatInput';
 import Waiting from './waiting';
 import { ResetButton } from '../resetButton';
+import { useDispatch } from 'react-redux';
+import { createPost } from '../../redux/messages/messages.slice';
+import { store } from '../../redux/store/store';
 
 export type ChatMessage = {
   role: string,
   content: string
 }
 
-function HomeScreen({ navigation }): JSX.Element {
+function ChatScreen({ navigation }): JSX.Element {
 
   const [chat, setChat] = useState<Array<ChatMessage>>([])
   const [isSubmit, setIsSubmit] = useState<string>('')
   const [isLoading, setIsLoading] = useState<boolean>(false)
-
+  const dispatch = useDispatch()
   const scrollRef = useRef<FlatList>(null);
-
+  console.log(store.getState())
 
   useEffect(() => {
     async function updateChat() {
@@ -41,11 +44,12 @@ function HomeScreen({ navigation }): JSX.Element {
   
         const { message, finish_reason } = rawResponse.choices[0]      
         setChat(prevChat => [...prevChat, message])
-        
+        console.log(chat)
       }catch (error){
         console.error(error)
       }finally{
         setIsLoading(false)
+        dispatch(createPost(chat))
       }
       
     }
@@ -95,7 +99,7 @@ function HomeScreen({ navigation }): JSX.Element {
   );
 }
 
-export default HomeScreen
+export default ChatScreen
 
 const styles = StyleSheet.create({
   container: {
